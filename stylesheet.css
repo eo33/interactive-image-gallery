@@ -1,0 +1,39 @@
+.card-img-top {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+    
+}
+
+
+.image-hover::after {
+    cursor: pointer;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Adjust the opacity as desired */
+    transition: opacity 0.3s ease;
+}
+
+
+.image-hover .fa-thumbs-up,
+.image-hover .fa-comment {
+    position: relative;
+    z-index: 1;
+}
+
+
+.hide{
+    display:none
+}
+
+
+
+@media (min-width:992px){
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+}
