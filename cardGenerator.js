@@ -27,6 +27,7 @@ function createCard(imagePath,title) {
 }
 
 $(document).ready(function() {
+    let imageTracker = 1;
     for (let i = 1; i <= 6; i++){
         createCard(`./public/${i}.jpg`,'card-num-'+i);
 
@@ -43,11 +44,32 @@ $(document).ready(function() {
 
         // Add fullscreen eeffect
 
+        // Initiate fullscreen when clicked
         $('#card-num-'+i).on('click',()=>{
-            $('#card-num-'+i).toggleClass('zoomed')
+            $('#fullscreen').removeClass('hide')
+            $('#selected-image').attr('src',`./public/${i}.jpg`)
+            if(i == 1){
+                $('#left-arrow').addClass('hide')
+             } else{
+                $('#left-arrow').removeClass('hide')
+             }
          })
-    }
 
+    }
+    
+    $('#right-arrow').on('click',()=>{
+        imageTracker += 1;
+        $('#selected-image').attr('src',`./public/${imageTracker}.jpg`)
+    })
+
+    $('#left-arrow').on('click',()=>{
+        imageTracker -= 1;
+        $('#selected-image').attr('src',`./public/${imageTracker}.jpg`)
+    })
+    $("#exit-carousel").on('click',()=>{
+        $('#fullscreen').addClass('hide')
+        imageTracker=0;
+     })
 
 });
   
