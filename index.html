@@ -55,14 +55,14 @@
 
       <!--Carousel-->
       <div id="fullscreen" class="hide">
-        <div class="container-fluid image-container d-flex justify-content-center align-items-center" >
+        <div class="container-fluid image-container d-flex justify-content-center align-items-center">
           <i class="fa-solid fa-x exit-carousel" id="exit-carousel" style="color: #FFFFFF;"></i>
           <div id='left-arrow'>
             <i class="fa-solid fa-circle-left arrow" ></i>
           </div>
           <div class="card mx-3" style="max-width: 1440px;">
             <div class="row g-0">
-              <div class="col-md-8 align-items-stretch">
+              <div class="col-md-8 align-items-stretch" id="fullscreen-image-row">
                 <!--INSERT SELECTED IMAGE-->
                 <img class="img-fluid rounded-start card-fs-img" alt="..." id="selected-image">
               </div>
@@ -80,7 +80,8 @@
                   <form class="form-style">
                     <div class="row">
                       <div class="col-1">
-                        <i class="fa-regular fa-thumbs-up"></i>
+                        <!--INSERT LIKES-->
+                        <i class="fa-regular fa-thumbs-up" id="fullscreen-like"></i>
                       </div>
                       <div class="col-1">
                         <i class="fa-regular fa-comment"></i>
@@ -90,10 +91,12 @@
                         <i class="fa-regular fa-bookmark"></i>
                       </div>
                     </div>
-                    <div class="row mt-3 ">
-                      <div class="col">
-                        <input type="text" id="name" name="name" placeholder="Add a comment">
-                        <button>Post</button>
+                    <div class="row mt-3 justify-content-between">
+                      <div class="col-9">
+                        <input type="text" id="comment" placeholder="Add a comment" style="width:100%">
+                      </div>
+                      <div class="col-3 align-self-end">
+                        <button disabled id="comment-button">Post</button>
                       </div>
                     </div>
                   </form>
@@ -114,7 +117,7 @@
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> 
     <!--Custom JS-->
-    <script src="cardGenerator.js"></script>
+    <script src="cardGenerator2.js"></script>
     <script src="fullscreenMaker js"></script>
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
