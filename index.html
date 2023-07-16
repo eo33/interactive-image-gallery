@@ -39,14 +39,29 @@
       <section class="py-5 text-center container">
         <div class="row py-lg-1">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Album</h1>
+            <h1 class="fw-light ">Album</h1>
           </div>
         </div>
       </section>
+
       <!--ALBUM-->
-      <div class="py-5 bg-light">
+      <div class="container d-flex justify-content-center border-top">
+
+        <h5 class="posts-selection border-dark border-top mx-3 py-1" id="posts">
+          <i class="fas fa-tv "></i>
+          Posts
+        </h5>
+
+        <h5 class="posts-selection border-dark mx-3 py-1" id="saved">
+          <i class="fa-regular fa-bookmark " ></i>
+          Saved
+        </h5>
+
+      </div>
+
+      <div class="py-5">
         <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="cardContainer">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="position:relative" id="cardContainer">
             <!--INSERT GENERATED IMAGES-->
             </div>
           </div>
@@ -57,6 +72,12 @@
       <div id="fullscreen" class="hide">
         <div class="container-fluid image-container d-flex justify-content-center align-items-center">
           <i class="fa-solid fa-x exit-carousel" id="exit-carousel" style="color: #FFFFFF;"></i>
+          
+          <!--ARROW FOR BOOKMARK-->
+          <div id='left-arrow-saved' class="hide">
+            <i class="fa-solid fa-circle-left arrow" >Lsaved</i>
+          </div>
+
           <div id='left-arrow'>
             <i class="fa-solid fa-circle-left arrow" ></i>
           </div>
@@ -71,9 +92,9 @@
                 <div class="card-header">Edward O</div>
 
                 <div class="card-body d-flex-inline p-0 ">
-                  <p class="card-text">
+                  <p class="card-text" id="comments-container">
                     <!--INSERT SAVED COMMENTS-->
-                    <p class="m-3" id="selected-image-comment">Comment 1</p>
+                    <p class="d-flex justify-content-center" id="empty-container">No comment</p>
                   </p>
                 </div>
                 <div class="card-footer ">
@@ -84,16 +105,16 @@
                         <i class="fa-regular fa-thumbs-up" id="fullscreen-like"></i>
                       </div>
                       <div class="col-1">
-                        <i class="fa-regular fa-comment"></i>
+                        <i class="fa-regular fa-comment" id="fullscreen-comment"></i>
                       </div>
 
                       <div class="col-1 offset-md-8">
-                        <i class="fa-regular fa-bookmark"></i>
+                        <i class="fa-regular fa-bookmark" id="fullscreen-bookmark"></i>
                       </div>
                     </div>
                     <div class="row mt-3 justify-content-between">
                       <div class="col-9">
-                        <input type="text" id="comment" placeholder="Add a comment" style="width:100%">
+                        <input type="text" id="comment-box" placeholder="Add a comment" style="width:100%">
                       </div>
                       <div class="col-3 align-self-end">
                         <button disabled id="comment-button">Post</button>
@@ -105,8 +126,14 @@
             </div>
           </div>
           <div id='right-arrow'>
-            <i class="fa-solid fa-circle-right arrow" id="right-arrow"></i>
+            <i class="fa-solid fa-circle-right arrow"></i>
           </div>
+          
+          <!--ARROW FOR BOOKMARK-->
+          <div id='right-arrow-saved' class="hide">
+            <i class="fa-solid fa-circle-right arrow">Rsaved</i>
+          </div>
+
         </div>
       </div>
     </main>
@@ -116,9 +143,16 @@
     <!--FOOTER-->
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> 
-    <!--Custom JS-->
+    
+    <!--JQuery JS files-->
     <script src="cardGenerator.js"></script>
+    <script src="posts.js"></script>
     <script src="fullscreenEffect.js"></script>
+    <script src="bookmark.js"></script>
+    <script src="likes.js"></script>
+    <script src="comments.js"></script>
+    
+    
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>

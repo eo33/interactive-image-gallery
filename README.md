@@ -16,7 +16,7 @@ An image gallery web application
 
 ### Post interaction
 1. As a user, I want to be able to view individual post, with likes, comments and bookmark status. (Done!)
-2. As a user, I want to be able to add a comment on a post.
+2. As a user, I want to be able to add a comment on a post. (Done!)
 3. As a user, I want to be able to like a post. (Done!)
 4. As a user, I want to be able to bookmark a post.
 
