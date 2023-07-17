@@ -6,6 +6,7 @@ $(document).ready(()=>{
 
     $('.main-card').on('click',(event)=>{
         // From the card template HTML, access the image path src. 
+        
         let imagePath = event.currentTarget.childNodes[1].getAttribute('src')
         $('#fullscreen').removeClass('hide')
         $('#selected-image').attr('src',imagePath)

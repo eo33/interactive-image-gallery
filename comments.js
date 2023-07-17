@@ -3,16 +3,16 @@ $(document).ready(() => {
   window.Comments = [[], [], [], [], [], []];
 
   // Template of comment
-  let Commentstemplate = (commentText) => `
+  window.Commentstemplate = (commentText) => `
     <p class="m-3">
       <strong>Edward O:</strong> ${commentText}
     </p>
   `;
   
   // Generate Comment
-  let generateCommentHTML = () => {
-    let textToAdd = Comments[imageTracker-1].reduce((acc, commentToAdd) => {
-      return acc + Commentstemplate(commentToAdd);
+  let generateCommentHTML = (imageIndex) => {
+    let textToAdd = window.Comments[imageIndex].reduce((acc, commentToAdd) => {
+      return acc + window.Commentstemplate(commentToAdd);
     }, '');
 
     $('#comments-container').html(textToAdd);
@@ -51,19 +51,34 @@ $(document).ready(() => {
     let comment = $('#comment-box').val();
     Comments[imageTracker - 1].push(comment);
 
-    generateCommentHTML();
+    generateCommentHTML(imageTracker-1);
   });
 
-  // Show comment on other slides
+  // Show comment on Posts slides
   // Right arrow
   $('#right-arrow',).on('click',()=>{
-    generateCommentHTML();
+    generateCommentHTML(imageTracker-1);
   })
 
   // Left arrow
   $('#left-arrow').on('click',()=>{
-    generateCommentHTML();
+    generateCommentHTML(imageTracker-1);
   })
+
+  // Show comment on Saved slides
+  // Right arrow saved
+  $('#right-arrow-saved',).on('click',()=>{
+    console.log(window.listOfIndexes[window.currentIndex])
+    console.log(window.Comments)
+    generateCommentHTML(window.listOfIndexes[window.currentIndex]-1);
+  })
+
+  // Left arrow saved
+  $('#left-arrow-saved').on('click',()=>{
+    console.log(window.listOfIndexes[window.currentIndex])
+    generateCommentHTML(window.listOfIndexes[window.currentIndex]-1);
+  })
+
 
   // Show comment count after exit
   $("#exit-carousel").on('click',()=>{
@@ -79,7 +94,7 @@ $(document).ready(() => {
 
   // Reload comment when clicking fullscreen
   $('.main-card').on('click',(event)=>{
-    generateCommentHTML();
+    generateCommentHTML(imageTracker-1);
   })
 })
 

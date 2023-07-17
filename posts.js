@@ -11,13 +11,13 @@ $(document).ready(()=>{
         $('#card-num-'+i).on('mouseenter',()=>{
             $('#card-num-'+i).addClass('image-hover')
             $('#card-num-'+i+'-hide').show()
-            console.log(window.imageTracker)
+            
         })
  
          $('#card-num-'+i).on('mouseleave',()=>{
              $('#card-num-'+i).removeClass('image-hover')
              $('#card-num-'+i+'-hide').hide()
-             console.log(window.imageTracker)
+             
         })
     }
 })

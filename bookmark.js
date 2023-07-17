@@ -1,15 +1,17 @@
 $(document).ready(() => {
-
     // Initialize state of bookmark
     window.Bookmark = [false,false,false,false,false,false];
-    let saved = [];
+    window.currentIndex = 0;
+    let savedMode = false;
+    window.listOfIndexes = [];
 
+    // Handle bookmark click
     $('#fullscreen-bookmark').on('click',()=>{
         window.Bookmark[imageTracker-1] = ! window.Bookmark[imageTracker-1];
         $('#fullscreen-bookmark').toggleClass('fa-solid');
     })
 
-    // Handle bookmark for fullscreen
+    // Handle bookmark when user click on fullscreen
     $('.main-card').on('click',(event)=>{
         if (window.Bookmark[imageTracker-1]){
             $('#fullscreen-bookmark').addClass('fa-solid')
@@ -39,24 +41,27 @@ $(document).ready(() => {
     })
 
     // Change state of Posts and Saved
-
     $('#posts').on('click',()=>{
         $('#posts').addClass('border-top')
         $('#saved').removeClass('border-top')
 
+        // Unhide unbookmark posts
         for(let i = 1; i <= window.Bookmark.length; i++){
             if(window.Bookmark[i-1] == false){
                 $(`#card-num-`+i+`-container`).removeClass('hide')
             } 
         }
 
-        // Enable Posts arrows
+        // Enable Posts arrows ('Posts arrows' are different from 'Saved arrows')
         $('#right-arrow').removeClass('hide-important')
         $('#left-arrow').removeClass('hide-important')
 
         // Disable Saved arrows
         $('#right-arrow-saved').addClass('hide')
         $('#left-arrow-saved').addClass('hide')
+        
+        window.listOfIndexes = [];
+        savedMode = false;
     })
 
     $('#saved').on('click',()=>{
@@ -70,10 +75,11 @@ $(document).ready(() => {
                 $(`#card-num-`+i+`-container`).addClass('hide')
             }else{
                 $(`#card-num-`+i+`-container`).removeClass('hide')
-                saved.push(i)
+                
+                window.listOfIndexes.push(i)
             }
         }
-        console.log(saved);
+        console.log(window.listOfIndexes);
         // Disable the Posts arrows
         $('#right-arrow').addClass('hide-important')
         $('#left-arrow').addClass('hide-important')
@@ -81,27 +87,56 @@ $(document).ready(() => {
         // Enable the Saved arrows
         $('#right-arrow-saved').removeClass('hide')
         $('#left-arrow-saved').removeClass('hide')
+
+        // turn saved mode on
+        savedMode = true;
     })
 
-    
-    
+    $('.main-card').on('click',()=>{
+        // Current index
+        window.currentIndex = window.listOfIndexes.indexOf(window.imageTracker)
+
+        // Hide arrow if at first index, only in saved Mode
+        if(savedMode){
+            if(window.currentIndex == 0){
+                $('#left-arrow-saved').addClass('hide')
+            } else {
+                $('#left-arrow-saved').removeClass('hide')
+            }
+
+            // Hide arrow if at last index
+            if(window.currentIndex == window.listOfIndexes.length-1){
+                $('#right-arrow-saved').addClass('hide')
+            } else {
+                $('#right-arrow-saved').removeClass('hide')
+            }
+
+            // Show comments
+            console.log(window.Comments);
+        }
+    })    
     
     $('#right-arrow-saved').on('click',()=>{
-        let currentIndex = saved.indexOf(window.imageTracker)
-
-        console.log('image tracker: '+ imageTracker);
-        console.log('current index: ' + currentIndex)
-        currentIndex += 1
-        console.log('current index with plus one: ' + currentIndex);
+        window.currentIndex += 1;
+        $('#selected-image').attr('src',`./public/${window.listOfIndexes[window.currentIndex]}.jpg`)
+        console.log(window.currentIndex)
+        $('#left-arrow-saved').removeClass('hide');
+        if(window.currentIndex == window.listOfIndexes.length-1){
+            $('#right-arrow-saved').addClass('hide')
+        }
+        //window.generateCommentHTML(window.currentIndex);
+    })
         
-        console.log('saved [ currentIndex]: '+saved[currentIndex]);
+    $('#left-arrow-saved').on('click',()=>{
+        window.currentIndex -= 1;
+        $('#selected-image').attr('src',`./public/${window.listOfIndexes[window.currentIndex]}.jpg`)
+        console.log(window.currentIndex)
 
-        $('#selected-image').attr('src',`./public/${saved[currentIndex]}.jpg`)
+        $('#right-arrow-saved').removeClass('hide');
+        if(window.currentIndex == 0){
+            $('#left-arrow-saved').addClass('hide')
+        }
     })
 
 
-
-    $("#exit-carousel").on('click',()=>{
-        currentIndex=0;
-     })
 })
