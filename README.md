@@ -1,5 +1,5 @@
 # Interactive image gallery
-An image gallery web application. The focus of this personal project is on the interaction between the different DOM elements. It is inspired from the popular social media applicationi Instagram.
+An image gallery web application. The focus of this personal project is on the interaction between the different DOM elements. It is inspired from Instagram.
 
 ## Production build
 Visit https://eo33.github.io/interactive-image-gallery to view the the web application.
